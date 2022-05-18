@@ -31,8 +31,11 @@ export default class BestGameEver extends PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#FFF"
+    // flex: 1,
+    backgroundColor: 'red' ,
+    display : 'flex',
+    justifyContent : 'center' ,
+    width : '50vh'
   }
 });
 

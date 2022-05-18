@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { GameEngine } from "react-native-game-engine"
+import BestGameEver from "./index.android"
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>TEST GAME First Time</Text>
-      <StatusBar style="auto" />
+      <View style={{display: 'flex',justifyContent : 'center',margin:'auto'}}>
+        <Text>TEST GAME First Time</Text>
+        <BestGameEver />
+        <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
