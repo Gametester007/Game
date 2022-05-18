@@ -7,7 +7,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={{display: 'flex',justifyContent : 'center',margin:'auto'}}>
-        <Text>TEST GAME First Time</Text>
+        <Text>บ่าต้นหน้าโง่</Text>
+        <Text>Ice Na Hee</Text>
         <BestGameEver />
         <StatusBar style="auto" />
       </View>
@@ -15,12 +16,15 @@ export default function App() {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop:200
   },
 });
+
+
+
