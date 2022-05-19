@@ -1,31 +1,92 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { React, useState, useEffect } from 'react';
 // import { GameEngine } from "react-native-game-engine"
 // import BestGameEver from "./index.android"
 
-const NumberOne = Math.floor(Math.random() * 100);
-const NumberTwo = Math.floor(Math.random() * 100);
+// const NumberOne = Math.floor(Math.random() * 100);
+// const NumberTwo = Math.floor(Math.random() * 100);
+// const Sum = (NumberOne * NumberTwo);
+// const fakeSum = (NumberOne * NumberTwo) + Math.floor(Math.random() * 10);
 
 
 
-
-const sum = (NumberOne * NumberTwo);
-const fakeSum = (NumberOne * NumberTwo) + Math.floor(Math.random() * 10);;
 
 export default function App() {
+
+  const sign = ["+", "-", "x", "/"]
+  const [Score, setScore] = useState(0);
+  const [NumberOne, setNumberOne] = useState(1);
+  const [NumberTwo, setNumberTwo] = useState(1);
+  const [Operation, setOperation] = useState(1);
+
+  const [Sum, setSum] = useState(0)
+  const [fakeSum, setFakeSum] = useState(1)
+
+
+
+
+  const RandomQuestion = () => {
+    setNumberOne(Math.floor(Math.random() * 100))
+    setNumberTwo(Math.floor(Math.random() * 100))
+    setOperation(Math.floor(Math.random() * 3))
+
+    switch (Operation) {
+      case 0:
+        setSum(NumberOne + NumberTwo)
+        break;
+      case 1:
+        setSum(NumberOne - NumberTwo)
+        break;
+      case 2:
+        setSum(NumberOne * NumberTwo)
+        break;
+      case 3:
+        setSum((NumberOne / NumberTwo).toFixed(2))
+        break;
+    }
+
+    switch (Operation) {
+      case 0:
+        setFakeSum((NumberOne + NumberTwo) + Math.floor(Math.random() * 10))
+        break;
+      case 1:
+        setFakeSum((NumberOne - NumberTwo) + Math.floor(Math.random() * 10))
+        break;
+      case 2:
+        setFakeSum((NumberOne * NumberTwo) + Math.floor(Math.random() * 10))
+        break;
+      case 3:
+        setFakeSum((NumberOne % NumberTwo).toFixed(2) + Math.floor(Math.random() * 10))
+        break;
+    }
+
+    console.log("one :" + NumberOne)
+    console.log("two :" + NumberTwo)
+    console.log("Oper :" + Operation)
+    console.log("Ans  :" + Sum)
+    console.log("Ans fake  :" + fakeSum)
+    upScore()
+    alert("ถูก")
+  }
+
+  const upScore = () => {
+    setScore(Score + 1)
+  }
+
   return (
     <ImageBackground source={require('./assets/background2.jpg')} style={styles.image}>
       <View style={styles.container}>
 
         <View style={styles.scoreBox}>
           <Text style={{ fontSize: 22, fontWeight: 'bold' }}>Score</Text>
-          <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{sum}</Text>
+          <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{Score}</Text>
           <StatusBar style="auto" />
         </View>
 
         <View style={styles.QABox}>
           <Text style={{ fontSize: 35, fontWeight: 'bold' }}>โจทย์</Text>
-          <Text style={{ fontSize: 40, fontWeight: 'bold' }}>{NumberOne} X {NumberTwo}</Text>
+          <Text style={{ fontSize: 40, fontWeight: 'bold' }}>{NumberOne} {sign[Operation]} {NumberTwo}</Text>
 
           <StatusBar style="auto" />
         </View>
@@ -34,11 +95,11 @@ export default function App() {
           <TouchableOpacity
             style={styles.TouchableOpacityStyle}
             onPress={() => {
-              alert('ถูกต้อง!');
+              RandomQuestion();
             }}
           >
             <View>
-              <Text style={{ fontSize: 22, fontWeight: 'bold', color: 'white' }}>{sum}</Text>
+              <Text style={{ fontSize: 22, fontWeight: 'bold', color: 'white' }}>{Sum}</Text>
             </View>
           </TouchableOpacity>
 
